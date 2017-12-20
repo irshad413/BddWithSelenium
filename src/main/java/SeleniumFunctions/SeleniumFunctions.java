@@ -4,14 +4,14 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 public class SeleniumFunctions{
 	public static WebDriver driver = null;
@@ -33,8 +33,9 @@ public class SeleniumFunctions{
 	}
 	
 	public WebDriver createDriver(String url){
-		System.setProperty("webdriver.chrome.driver", 
-				"C:\\BackUp\\FirmInitiatives\\HCSC\\BDDWithSelenium\\src\\main\\resources\\chromedriver.exe");
+		/*System.setProperty("webdriver.chrome.driver",
+				TestNgTestRunner.class.getClassLoader().getResource("chromedriver.exe").toExternalForm());*/
+		ChromeDriverManager.getInstance().setup();
 		ChromeOptions o = new ChromeOptions();
 		o.addArguments("disable-extensions");
 		o.addArguments("--start-maximized");
@@ -46,8 +47,9 @@ public class SeleniumFunctions{
 	}
 	
 	public WebDriver createInCognito(String url){
-		System.setProperty("webdriver.chrome.driver", 
-				"C:\\BackUp\\FirmInitiatives\\HCSC\\BDDWithSelenium\\src\\main\\resources\\chromedriver.exe");
+		/*System.setProperty("webdriver.chrome.driver",
+				TestNgTestRunner.class.getClassLoader().getResource("chromedriver.exe").toExternalForm());*/
+		ChromeDriverManager.getInstance().setup();
 		ChromeOptions o = new ChromeOptions();
 		o.addArguments("incognito");
 		o.addArguments("disable-extensions");

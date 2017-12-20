@@ -16,8 +16,8 @@ public class Hooks {
 		//we will need only test case number so getting only number
 		String testCaseId = getTestCase(scenarioName);
 		//Now will create a Folder path to save screenshots for this
-		String filePath = "C:\\BackUp\\FirmInitiatives\\HCSC\\BDDWithSelenium\\src\\main\\resources\\";
-		String screenshotsPath = filePath+"screenshots\\"+testCaseId;
+		String filePath = "target/";
+		String screenshotsPath = filePath+"screenshots/"+testCaseId;
 		createFolder(screenshotsPath);
 		System.setProperty("EvidencePath", screenshotsPath);
 	}
@@ -30,7 +30,7 @@ public class Hooks {
 			path = path+"\\"+sdf.format(currentTime.getTime());
 		}
 		File screenshotDir = new File(path);
-		
+		screenshotDir.mkdirs();
 		if(!(path.contains("NoTestCaseId")) && screenshotDir.exists()){
 			//this feature is compatible in only Java 1.8 for lower versions, we should create a method
 			Arrays.stream(new File(path).listFiles()).forEach(File::delete);

@@ -37,7 +37,9 @@ public class TestNgTestRunner {
     
     @BeforeTest
     public static void readInputData() throws Exception{
-    	File testDataFile = new File("C:\\BackUp\\FirmInitiatives\\HCSC\\BDDWithSelenium\\src\\main\\resources\\testData.xlsx");
+    	System.out.println("Chrome Driver Path: " + TestNgTestRunner.class.getClassLoader().getResource("chromedriver.exe").toExternalForm());
+    	System.out.println("Target Path: " + TestNgTestRunner.class.getClassLoader().getResource("testData.xlsx").toExternalForm());
+    	File testDataFile = new File(TestNgTestRunner.class.getClassLoader().getResource("testData.xlsx").toExternalForm());
     	String path = testDataFile.getAbsolutePath();
     	if(testDataFile.exists()){
     		dataFromExcel = new XlUtil().readExcel(path);

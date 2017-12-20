@@ -7,6 +7,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
+
 public class SeleniumFactory {
 	private static WebDriver mdriver;
 	private static WebDriverWait wait;
@@ -23,11 +26,13 @@ public class SeleniumFactory {
 	protected WebDriver getWebDriver(String webDriverType, long defaultTimeOut){		
 		switch(webDriverType){
 		case "Chrome":
-			System.setProperty("webdriver.chrome.driver", "C:\\BackUp\\FirmInitiatives\\HCSC\\BDDWithSelenium\\src\\main\\resources\\chromedriver.exe");
+			//System.setProperty("webdriver.chrome.driver", TestNgTestRunner.class.getClassLoader().getResource("chromedriver.exe").toExternalForm());
+			ChromeDriverManager.getInstance().setup();
 			mdriver = new ChromeDriver();
 			mdriver.manage().timeouts().implicitlyWait(defaultTimeOut, TimeUnit.SECONDS);
 			break;
 		case "FireFox":
+			FirefoxDriverManager.getInstance().setup();
 			mdriver = new FirefoxDriver();
 			mdriver.manage().timeouts().implicitlyWait(defaultTimeOut, TimeUnit.SECONDS);
 			break;
